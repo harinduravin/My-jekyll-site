@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to decrypt a JSON Web Encryption (JWE) using JAVA</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="How to decrypt a JSON Web Encryption (JWE) using JAVA" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in May 2015 with the RFC 7519. There are multiple applications of JWT. The OpenID Connect is one of them. In OpenID Connect the id token is represented as a JWT. Both in securing APIs and Microservices, the JWT is used as a way to propagate and verify end-user identity." />
+<meta property="og:description" content="JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in May 2015 with the RFC 7519. There are multiple applications of JWT. The OpenID Connect is one of them. In OpenID Connect the id token is represented as a JWT. Both in securing APIs and Microservices, the JWT is used as a way to propagate and verify end-user identity." />
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*_DkcB2a_15K39gpPs0VAKg.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-11T19:26:58+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*_DkcB2a_15K39gpPs0VAKg.png" />
+<meta property="twitter:title" content="How to decrypt a JSON Web Encryption (JWE) using JAVA" />
+<script type="application/ld+json">
+{"url":"/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html","image":"https://cdn-images-1.medium.com/max/800/1*_DkcB2a_15K39gpPs0VAKg.png","headline":"How to decrypt a JSON Web Encryption (JWE) using JAVA","dateModified":"2020-12-11T19:26:58+05:30","datePublished":"2020-12-11T19:26:58+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html"},"description":"JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in May 2015 with the RFC 7519. There are multiple applications of JWT. The OpenID Connect is one of them. In OpenID Connect the id token is represented as a JWT. Both in securing APIs and Microservices, the JWT is used as a way to propagate and verify end-user identity.","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/images/infinity.png">
+		<title>Infinity & Beyond! - How to decrypt a JSON Web Encryption (JWE) using JAVA</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<!-- Custom styles for this template -->
+		<link href="/assets/css/jquery.bxslider.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src= 'https://www.googletagmanager.com/gtag/js?id=G-FJ5M3P0NKC' ></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-FJ5M3P0NKC');
+		</script>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/index.html">Home</a></li>
+						<li><a href="/finance.html">Finance</a></li>
+						<li><a href="/travel.html">Travel</a></li>
+						<li><a href="/tech.html">Tech</a></li>
+						<li><a href="/other.html">Other</a></li>
+						<li><a href="/about.html">About Me</a></li>
+						<li><a href="/contact.html">Contact</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://harinduravin.medium.com" target="_blank">Medium.com</a></li>
+					</ul>
+
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
+		<header>
+			<a href="index.html"><h1>Infinity & Beyond!</h1></a>
+		</header>
+
+        <section>
+            <div class="row">
+                <div class="col-md-8">
+<article class="blog-post">
+    <div class="blog-post-body">
+        <h2><a href=#>How to decrypt a JSON Web Encryption (JWE) using JAVA</a></h2>
+        <div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a></span>|<span><i class="fa fa-clock-o"></i>11 Dec 2020</span>|<span><a href="/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html#disqus_thread"></a></span></div>
+        <div class="blog-post-text">
+            <p><img src="https://cdn-images-1.medium.com/max/800/1*_DkcB2a_15K39gpPs0VAKg.png" alt="" /></p>
+
+<blockquote>
+  <p>JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in May 2015 with the RFC 7519. There are multiple applications of JWT. The OpenID Connect is one of them. In OpenID Connect the <em>id_token</em> is represented as a JWT. Both in securing APIs and Microservices, the JWT is used as a way to propagate and verify end-user identity.</p>
+</blockquote>
+
+<p>Above description is a direct reference from,</p>
+
+<p><a href="https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3" title="https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3"><strong>JWT, JWS and JWE for Not So Dummies! (Part I)</strong><br />
+_JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in…_medium.facilelogin.com</a><a href="https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3"></a></p>
+
+<p>There are two types of encryption,</p>
+
+<ol>
+  <li>Symmetric encryption</li>
+  <li>Asymmetric encryption</li>
+</ol>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*qFcIscbuAMf80JHFkep97Q.png" alt="" /></p>
+
+<p>A quick youtube video or google search can help one understand this concept. These two types of encryption exist in JSON Web Tokens (JWT) as well. As explained above, JWTs are used as containers to transport data between two parties.</p>
+
+<p>Let’s say for example your mobile banking app is acquiring banking data from the bank to your phone. Some data might be very confidential. You do not want anyone to get their hands on them while in the network.</p>
+
+<p>For this purpose, <strong>JWEs</strong> can be used. To communicate using JWEs, <strong>both symmetric and asymmetric</strong> encryption is used.</p>
+
+<p>Some data might be not so critical as well, but the banks may need to know for sure that the data you send is actually from you.</p>
+
+<p>For this purpose, <strong>JWS</strong> (JSON Web Signature) can be used. If anyone in the internet get their hands on with this data, they can know exactly what you sent, because you have encoded the data (but not encrypted) with a famous encoding method(base64url).</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*xQ-xuOiV8O9doAcSiqKPOQ.png" alt="" /></p>
+
+<p>JWS can be generated easily using the following website,</p>
+
+<p><a href="https://jwt.io/" title="https://jwt.io/"><strong>JWT.IO</strong><br />
+_JSON Web Token (JWT) is a compact URL-safe means of representing claims to be transferred between two parties. The…_jwt.io</a><a href="https://jwt.io/"></a></p>
+
+<p>To create a JWS, data is represented as JSON and then signed using the sender’s private key. The receiver can then use the sender’s public key (which is available without restriction) and validate the sender.</p>
+
+<p>Using JWT.io site to create JWS and validate JWS is the easy part. Sometimes we need to send data using JWEs. Here, actual encryption takes place in addition to usual base64url encoding.</p>
+
+<p>JWE is more complex than this. It has 5 parts connected using periods.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*lgMjCBtkaH1PiH8jy4zpyg.png" alt="" /></p>
+
+<p>Say you receive a JWE, encrypted using your public key. Now since you have your private key, only you should be able to decrypt with your private key. you can decrypt the second part (Encrypted Key) in the image. This can be confusing. The second section in the image is the encrypted encryption key of the payload (data).</p>
+
+<p>In order to obtain data, we need the <strong>key</strong> ( Symmetric encryption key) which is encrypted using an asymmetric encryption key. As explained earlier, this is the use of both symmetric and asymmetric keys.</p>
+
+<p>Unlike JWS, there seems to be no reputable sites for the purpose of encrypting and decrypting JWEs. This is due to obvious security risk of getting private keys public.</p>
+
+<p>-—-BEGIN PRIVATE KEY—–<br />
+MIIEowIBAAKCAQEAvpnaPKLIKdvx98KW68lz8pGaRRcYersNGqPjpifMVjjE8LuC<br />
+oXgPU0HePnNTUjpShBnynKCvrtWhN+haKbSp+QWXSxiTrW99HBfAl1MDQyWcukoE<br />
+b9Cw6INctVUN4iRvkn9T8E6q174RbcnwA/7yTc7p1NCvw+6B/aAN9l1G2pQXgRdY<br />
+C/+G6o1IZEHtWhqzE97nY5QKNuUVD0V09dc5CDYBaKjqetwwv6DFk/GRdOSEd/6b<br />
+W+20z0qSHpa3YNW6qSp+x5pyYmDrzRIR03os6DauZkChSRyc/Whvurx6o85D6qpz<br />
+ywo8xwNaLZHxTQPgcIA5su9ZIytv9LH2E+lSwwIDAQABAoIBAFml8cD9a5pMqlW3<br />
+f9btTQz1sRL4Fvp7CmHSXhvjsjeHwhHckEe0ObkWTRsgkTsm1XLu5W8IITnhn0+1<br />
+iNr+78eB+rRGngdAXh8diOdkEy+8/Cee8tFI3jyutKdRlxMbwiKsouVviumoq3fx<br />
+OGQYwQ0Z2l/PvCwy/Y82ffq3ysC5gAJsbBYsCrg14bQo44ulrELe4SDWs5HCjKYb<br />
+EI2b8cOMucqZSOtxg9niLN/je2bo/I2HGSawibgcOdBms8k6TvsSrZMr3kJ5O6J+<br />
+77LGwKH37brVgbVYvbq6nWPL0xLG7dUv+7LWEo5qQaPy6aXb/zbckqLqu6/EjOVe<br />
+ydG5JQECgYEA9kKfTZD/WEVAreA0dzfeJRu8vlnwoagL7cJaoDxqXos4mcr5mPDT<br />
+kbWgFkLFFH/AyUnPBlK6BcJp1XK67B13ETUa3i9Q5t1WuZEobiKKBLFm9DDQJt43<br />
+uKZWJxBKFGSvFrYPtGZst719mZVcPct2CzPjEgN3Hlpt6fyw3eOrnoECgYEAxiOu<br />
+jwXCOmuGaB7+OW2tR0PGEzbvVlEGdkAJ6TC/HoKM1A8r2u4hLTEJJCrLLTfw++4I<br />
+ddHE2dLeR4Q7O58SfLphwgPmLDezN7WRLGr7Vyfuv7VmaHjGuC3Gv9agnhWDlA2Q<br />
+gBG9/R9oVfL0Dc7CgJgLeUtItCYC31bGT3yhV0MCgYEA4k3DG4L+RN4PXDpHvK9I<br />
+pA1jXAJHEifeHnaW1d3vWkbSkvJmgVf+9U5VeV+OwRHN1qzPZV4suRI6M/8lK8rA<br />
+Gr4UnM4aqK4K/qkY4G05LKrik9Ev2CgqSLQDRA7CJQ+Jn3Nb50qg6hFnFPafN+J7<br />
+7juWln08wFYV4Atpdd+9XQECgYBxizkZFL+9IqkfOcONvWAzGo+Dq1N0L3J4iTIk<br />
+w56CKWXyj88d4qB4eUU3yJ4uB4S9miaW/eLEwKZIbWpUPFAn0db7i6h3ZmP5ZL8Q<br />
+qS3nQCb9DULmU2/tU641eRUKAmIoka1g9sndKAZuWo+o6fdkIb1RgObk9XNn8R4r<br />
+psv+aQKBgB+CIcExR30vycv5bnZN9EFlIXNKaeMJUrYCXcRQNvrnUIUBvAO8+jAe<br />
+CdLygS5RtgOLZib0IVErqWsP3EI1ACGuLts0vQ9GFLQGaN1SaMS40C9kvns1mlDu<br />
+LhIhYpJ8UsCVt5snWo2N+M+6ANh5tpWdQnEK6zILh4tRbuzaiHgb<br />
+-—-END PRIVATE KEY—–</p>
+
+<p>This is not a real private key, but private keys look like this.</p>
+
+<p>Let’s say we receive a JWE. By looking carefully, five parts of the JWE separated by four dots can be observed.</p>
+
+<blockquote>
+  <p>“eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJlbmMiOiJBMTI4R0NNIiwiYWxnIjoiUlNBMV81In0.H7oZNGtNPSPZWSaZWZjCHICIfc06w7h0XeJwVWmbJDFqtzIYCXSxyj-DYrVfP9lEmgWglv-WvYMnYEKxbnmrCu1mzGc-QjK4eHEMN_Z3sD4O-xZjGNVeMCCqxSS6pSTCoRUXTkpl2ENllfEtrnXzqj2xQQMfi98UPTRf3EXKjKt3Ks3x44KQLxk1cYvFuxDzzC0p5Kt1HEeinuzuQHTuPc0uoRC0RhUrGsRTgWkQDBqEDUDFUIE4GY9wQ1sJ1f9ulvtH4NHcHJVvM97aUmHL04bCzoulbWUKzmFxXOBSo41psegzRUWYPVg_m9dXHvJM_txY8gCypiU3AXhXT0mVfg.fdfDTkGkjGCyxuYs.gFT6LnqcVw5dV2gaOl0NylpRv89ThLcB3EQ2wFubuFDGuc9BFx16KNlObXkAcqAM_oZtijErN48IPfZFtCoXrSFDzOiLK1zeHegeW8G8sQkR45XXGvqf_dvR7cm5R9MzIPQhYZ4VilKbtlOwOlmQHz2FfxKTpEqXzMhjBIwW767wy4VR-mKIn1_8Nv2pGEb6g7EBmGbBtOb6o9kq4aip0nrh_KYNF9KLsJd1Ysma7gs-wAvX4siZXQbNMNlGe4DV14j3atW4ChsSdKYXGCze4W5SwqQemGMsHvLWv4wFWObxW0Xbo2nizecemibp-LIlQZ5QM-66xMb4tgysUDRZhoOWhJBPBmMSKyslwOlgpbzn20SYzaqNxRW9wIHG4kSu3cpeEbBh-X1HEjf8ULCBz5Jxac-tM46btxM_zxDaEFqpgM_7oKWC5Kv0TQn3V4OUk8RHhAdEF9pmsPKxyx_tvSgXpj2l7BwDCIxdEwzWSMJYI0ed-p8D5w5ZRYb8DS4.kCMw9Xn9eGEitd8MQio0bA”</p>
+</blockquote>
+
+<p>Our goal is to decrypt the above JWE using a private key like the previous picture. Below code can be used to decrypt and retrieve the data from the JWE. Make sure to start the project as a Maven project in order to add dependencies when required.</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*osCD8dQ3ueH2DnTGDhxsUw.png" alt="" /></p>
+
+<p><em>Access the JAVA project through this link:</em></p>
+
+<p><a href="https://github.com/harinduravin/JWEdecrypt"><em>https://github.com/harinduravin/JWEdecrypt</em></a></p>
+
+<p>Modulus and private exponent parts are a result of converting the Private key string to a friendly format (RSA format). Converting the private key was essential for the actual decryption part. Actual decryption process is complex and involve mathematics. Different algorithms used in these can be studied as well.</p>
+
+<p>The second part of the response is the decrypted payload, which is an id token. As explained in the first paragraph, OpenID Connect is one of the applications of JWT. An id token is a part of OpenID Connect. The payload of the response shows the claims expected from this id token.</p>
+
+<p>If the private key is not matching with the public key used by sender, an error will occur in the following code line.</p>
+
+<p><strong>jwt.decrypt(decrypter);</strong></p>
+
+<p>References:</p>
+
+<p><a href="https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/" title="https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/"><strong>Decrypting OpenID Connect Encrypted ID Tokens - WSO2 Identity Server Documentation</strong><br />
+_ The WSO2 Identity Server provides encrypted ID Tokens to address some security vulnerabilities in the production…_is.docs.wso2.com</a><a href="https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/"></a></p>
+
+        </div>
+    </div>
+</article>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    
+    var disqus_config = function () {
+    this.page.url = 'http://harinduravin.github.io/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://harindu-personal.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                </div>
+                <div class="col-md-4 sidebar-gutter">
+                    <aside>
+                    <!-- sidebar-widget -->
+                    
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">About Me</h3>
+                        <div class="widget-container widget-about">
+                            <a href="post.html"><img src="/images/author.jpg" alt=""></a>
+                            <h4>Harindu Jayarathne</h4>
+                            <div class="author-title">Hello There!</div>
+                            <p>I am an individual fascinated and driven by electronics, telecommunication, software, finance, accounting and economics. I love to scribble down literally anything I find interesting in these areas.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Featured Posts</h3>
+                        <div class="widget-container">
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2021/01/19/@harinduravin-make-your-open-banking-dcr-flow-test-10-times-faster-in-postman-ebcb6eff14ad.html"><img src="https://cdn-images-1.medium.com/max/600/0*LQBZ1s7jkWdae94F.png" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2021/01/19/@harinduravin-make-your-open-banking-dcr-flow-test-10-times-faster-in-postman-ebcb6eff14ad.html">Make your Open Banking DCR flow test 10 times faster in Postman</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>19 Jan 2021</span>|  <span><a href="/2021/01/19/@harinduravin-make-your-open-banking-dcr-flow-test-10-times-faster-in-postman-ebcb6eff14ad.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html"><img src="https://cdn-images-1.medium.com/max/800/1*_DkcB2a_15K39gpPs0VAKg.png" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html">How to decrypt a JSON Web Encryption (JWE) using JAVA</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>11 Dec 2020</span>|  <span><a href="/2020/12/11/@harinduravin-how-to-decrypt-a-json-web-encryption-jwe-using-java-4146ef3082a6.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                                
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2020/12/19/@harinduravin-what-caused-2008-financial-crisis-b91e775473b6.html"><img src="https://cdn-images-1.medium.com/max/800/0*y-m6GXssKpRbaTq5.jpg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2020/12/19/@harinduravin-what-caused-2008-financial-crisis-b91e775473b6.html">What caused 2008 financial crisis?</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>19 Dec 2020</span>|  <span><a href="/2020/12/19/@harinduravin-what-caused-2008-financial-crisis-b91e775473b6.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2020/11/14/@harinduravin-is-cima-a-good-trend-to-follow-after-a-ls-for-after-a-l-students-f8fabf464aae.html"><img src="https://cdn-images-1.medium.com/max/800/1*ay41z1hamAaY_JB0lChTOA.jpeg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2020/11/14/@harinduravin-is-cima-a-good-trend-to-follow-after-a-ls-for-after-a-l-students-f8fabf464aae.html">Is CIMA a good trend to follow after A/Ls? (For after A/L students)</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>14 Nov 2020</span>|  <span><a href="/2020/11/14/@harinduravin-is-cima-a-good-trend-to-follow-after-a-ls-for-after-a-l-students-f8fabf464aae.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                                
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html"><img src="https://cdn-images-1.medium.com/max/800/0*4hRbzd_aLxHymj3K.jpg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html">Setting up legacy 1997 Joint Strike Fighter (JSF) game on Windows 10 system</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>30 Dec 2020</span>|  <span><a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Socials</h3>
+                        <div class="widget-container">
+                            <div class="widget-socials">
+                                <a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <div class="widget-container">
+                            <ul>
+                                <li><a href="/finance.html">Finance</a></li>
+                                <li><a href="/travel.html">Travel</a></li>
+                                <li><a href="/tech.html">Tech</a></li>
+                                <li><a href="/other.html">Other</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+
+        </div><!-- /.container -->
+
+        <footer class="footer">
+
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+				<i class="fa fa-copyright"></i> 2021 Harindu Jayarathne.<br>
+				 Powered by Jekyll</a>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.bxslider.js"></script>
+        <script src="/js/mooz.scripts.min.js"></script>
+		
+		<script id= 'dsq-count-scr' src= 'https://harindu-personal.disqus.com/count.js' async></script>
+		
+    </body>
+</html>
+        

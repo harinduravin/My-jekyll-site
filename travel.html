@@ -1,0 +1,24 @@
+---
+layout: sidebar
+title: Travel
+---
+                    <div class="blog-post">
+                        <div class="blog-post-body">    
+                            <h2>travel</h2>
+                        </div>
+                    </div>
+					{% for post in site.posts %}
+                    {% if post.type == 'travel' %}
+					<article class="blog-post">
+						<div class="blog-post-image">
+							<a href="{{ post.url }}"><img src="{{ post.image }}" alt=""></a>
+						</div>
+						<div class="blog-post-body">
+							<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+							<div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a></span>|<span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|<span><a href= '{{ post.url }}#disqus_thread'></a></span></div>
+							<p>{{ post.description }}</p>
+							<div class="read-more"><a href="{{ post.url }}">Continue Reading</a></div>
+						</div>
+					</article>
+                    {% endif %}
+					{% endfor %}

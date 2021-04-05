@@ -1,0 +1,139 @@
+---
+layout: default
+---
+        <section>
+            <div class="row">
+                <div class="col-md-8">
+{{ content }}
+                </div>
+                <div class="col-md-4 sidebar-gutter">
+                    <aside>
+                    <!-- sidebar-widget -->
+                    {% unless page.title == 'about' %}
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">About Me</h3>
+                        <div class="widget-container widget-about">
+                            <a href="post.html"><img src="/images/author.jpg" alt=""></a>
+                            <h4>Harindu Jayarathne</h4>
+                            <div class="author-title">Hello There!</div>
+                            <p>I am an individual fascinated and driven by electronics, telecommunication, software, finance, accounting and economics. I love to scribble down literally anything I find interesting in these areas.</p>
+                        </div>
+                    </div>
+                    {% endunless %}
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Featured Posts</h3>
+                        <div class="widget-container">
+                            {% assign i = 0 %}
+                            {% for post in site.posts %}
+                            {% if post.type == 'tech' %}
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="{{ post.url }}"><img src="{{ post.image }}" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|  <span><a href="{{ post.url }}#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            {% assign i = i | plus:1 %}
+                            {% endif %}
+                            {% if i == 2 %}
+                                {% break %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% assign i = 0 %}
+                            {% for post in site.posts %}
+                            {% if post.type == 'finance' %}
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="{{ post.url }}"><img src="{{ post.image }}" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|  <span><a href="{{ post.url }}#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            {% assign i = i | plus:1 %}
+                            {% endif %}
+                            {% if i == 2 %}
+                                {% break %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% assign i = 0 %}
+                            {% for post in site.posts %}
+                            {% if post.type == 'travel' %}
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="{{ post.url }}"><img src="{{ post.image }}" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|  <span><a href="{{ post.url }}#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            {% assign i = i | plus:1 %}
+                            {% endif %}
+                            {% if i == 2 %}
+                                {% break %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% assign i = 0 %}
+                            {% for post in site.posts %}
+                            {% if post.type == 'other' %}
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="{{ post.url }}"><img src="{{ post.image }}" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|  <span><a href="{{ post.url }}#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            {% assign i = i | plus:1 %}
+                            {% endif %}
+                            {% if i == 2 %}
+                                {% break %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Socials</h3>
+                        <div class="widget-container">
+                            <div class="widget-socials">
+                                <a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <div class="widget-container">
+                            <ul>
+                                <li><a href="/finance.html">Finance</a></li>
+                                <li><a href="/travel.html">Travel</a></li>
+                                <li><a href="/tech.html">Tech</a></li>
+                                <li><a href="/other.html">Other</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
