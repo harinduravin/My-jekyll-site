@@ -5,8 +5,7 @@ image: https://cdn-images-1.medium.com/max/800/0*4hRbzd_aLxHymj3K.jpg
 comments: true
 title: Setting up legacy 1997 Joint Strike Fighter (JSF) game on Windows 10 system
 description: >-
-  Joint Strike Fighter is a 1997 combat flight simulator designed by Innerloop
-  Studios and published by Eidos Interactive. Innerloop…
+  Joint Strike Fighter is a 1997 combat flight simulator designed by Innerloop Studios and published by Eidos Interactive. Innerloop produced the game chiefly to be a showcase for their cutting edge game engine, which they planned to license to other game developers.
 date: '2020-12-30T08:25:55.550Z'
 categories: []
 keywords: []
@@ -20,8 +19,7 @@ slug: >-
 
 First I downloaded the game through this link. There is a mountable disk image of size 604MB. Additionally, there is a 160 page manual for the game play.
 
-[**JSF (Windows)**  
-_If you haven't played JSF or want to try this simulation video game, download it now for free! Published in 1997 by…_www.myabandonware.com](https://www.myabandonware.com/game/jsf-dh2#download "https://www.myabandonware.com/game/jsf-dh2#download")[](https://www.myabandonware.com/game/jsf-dh2#download)
+{% linkpreview "https://www.myabandonware.com/game/jsf-dh2#download" %}
 
 After downloading the 604MB file, there will be two files available in the download folder. Double click on the jsfv10.mds file.
 
@@ -61,8 +59,7 @@ From this one can see that these are very old drivers. Apparently installation f
 
 In order to get this part done, install nGlide 2.0 from the below site.
 
-[**nGlide - Glide wrapper | Zeus Software**  
-_nGlide is a 3Dfx Voodoo Glide wrapper. It allows you to play games designed for 3Dfx Glide API without the need for…_www.zeus-software.com](https://www.zeus-software.com/downloads/nglide "https://www.zeus-software.com/downloads/nglide")[](https://www.zeus-software.com/downloads/nglide)
+{% linkpreview "https://www.zeus-software.com/downloads/nglide" %}
 
 After downloading go through normal installation steps. Then go into this file path and find nglide\_config.exe file.
 
@@ -74,8 +71,7 @@ Create a shortcut of this file in the desktop. Add following settings in the nGl
 
 The next step is setting up Reshade on the JSF folder in the computer. This part is optional because, the game worked fine without Reshade in my computer. For this download Reshade through this link.
 
-[**ReShade**  
-_ReShade is a generic post-processing injector for games and video software developed by crosire. Imagine your favorite…_reshade.me](https://reshade.me/ "https://reshade.me/")[](https://reshade.me/)
+{% linkpreview "https://reshade.me" %}
 
 Open the Reshade setup and select the game file as,
 

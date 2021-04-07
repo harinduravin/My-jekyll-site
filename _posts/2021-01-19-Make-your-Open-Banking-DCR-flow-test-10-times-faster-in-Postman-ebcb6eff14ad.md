@@ -5,8 +5,7 @@ image: https://cdn-images-1.medium.com/max/600/0*LQBZ1s7jkWdae94F.png
 comments: true
 title: Make your Open Banking DCR flow test 10 times faster in Postman
 description: >-
-  I’m assuming you are already familiar with “What is DCR in open banking?”
-  before start reading this article. In case you are not familiar…
+  Postman is a popular API client that makes it easy for developers to create, share, test and document APIs. This is done by allowing users to create and save simple and complex HTTP/s requests, as well as read their responses. The result — more efficient and less tedious work.
 date: '2021-01-19T09:01:26.639Z'
 categories: []
 keywords: []
@@ -44,8 +43,7 @@ Let’s start the Postman software and get started with POST request.
 
 For the demonstration here, I’m using **UK DCR** flow. If you need to see the power of Pre-request Scripts, try to invoke Postman API calls without using them. Additionally, going through the steps given in the below article as explained by WSO2 Open Banking documentation will help you understand the process much better.
 
-[**Dynamic Client Registration v3.2**  
-_Before you begin: Deploy the Dynamic Client Registration (DCR) API v3.2. Click here to see how to deploy the DCR API To…_docs.wso2.com](https://docs.wso2.com/display/OB200/Dynamic+Client+Registration+v3.2 "https://docs.wso2.com/display/OB200/Dynamic+Client+Registration+v3.2")[](https://docs.wso2.com/display/OB200/Dynamic+Client+Registration+v3.2)
+{% linkpreview "https://docs.wso2.com/display/OB200/Dynamic+Client+Registration+v3.2" %}
 
 POST request
 

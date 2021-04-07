@@ -19,8 +19,7 @@ slug: >-
 
 Above description is a direct reference from,
 
-[**JWT, JWS and JWE for Not So Dummies! (Part I)**  
-_JSON Web Token (JWT) defines a container to transport data between interested parties. It became an IETF standard in…_medium.facilelogin.com](https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3 "https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3")[](https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3)
+{% linkpreview "https://medium.facilelogin.com/jwt-jws-and-jwe-for-not-so-dummies-b63310d201a3" %}
 
 There are two types of encryption,
 
@@ -43,8 +42,7 @@ For this purpose, **JWS** (JSON Web Signature) can be used. If anyone in the int
 
 JWS can be generated easily using the following website,
 
-[**JWT.IO**  
-_JSON Web Token (JWT) is a compact URL-safe means of representing claims to be transferred between two parties. The…_jwt.io](https://jwt.io/ "https://jwt.io/")[](https://jwt.io/)
+{% linkpreview "https://jwt.io/" %}
 
 To create a JWS, data is represented as JSON and then signed using the sender’s private key. The receiver can then use the sender’s public key (which is available without restriction) and validate the sender.
 
@@ -112,5 +110,4 @@ If the private key is not matching with the public key used by sender, an error 
 
 References:
 
-[**Decrypting OpenID Connect Encrypted ID Tokens - WSO2 Identity Server Documentation**  
-_ The WSO2 Identity Server provides encrypted ID Tokens to address some security vulnerabilities in the production…_is.docs.wso2.com](https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/ "https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/")[](https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/)
+{% linkpreview "https://is.docs.wso2.com/en/5.9.0/learn/decrypting-openid-connect-encrypted-id-tokens/" %}

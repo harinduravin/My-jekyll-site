@@ -5,8 +5,7 @@ image: https://cdn-images-1.medium.com/max/800/1*MQrawGhrhXAI8_tLuzVcyQ.jpeg
 comments: true
 title: Why current retail banking industry should cease for a moment and change?
 description: >-
-  In Australia, Australian Competition & Consumer Commission (ACCC) is
-  overlooking a new type of regulation for banks in Australia…
+  Banking industry has been very inconvenient for general consumer for a very long period of time, even after computer technology took over inefficient paper based systems. The existing information systems in the banks are still inefficient. Retail banking experience of the consumer still suffers.
 date: '2020-11-13T11:13:12.910Z'
 categories: []
 keywords: []

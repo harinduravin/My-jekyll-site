@@ -5,8 +5,7 @@ image: https://cdn-images-1.medium.com/max/800/1*ay41z1hamAaY_JB0lChTOA.jpeg
 comments: true
 title: Is CIMA a good trend to follow after A/Ls? (For after A/L students)
 description: >-
-  If you are thinking of starting out as a CIMA student, I hope this article
-  would be a small influence on your decision making. If you are…
+  If you are thinking of starting out as a CIMA student, I hope this article would be a small influence on your decision making. If you are hoping to complete CIMA it will take at least two years. In Sri Lanka, there is a big trend to follow this qualification.
 date: '2020-11-14T17:44:35.987Z'
 categories: []
 keywords: []

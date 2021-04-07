@@ -46,8 +46,7 @@ Since the registration fee is quite high, there is considerable risk in registra
 
 ### Registration
 
-[**Enroll and Register for the CFA Exam**  
-_Due to social distancing requirements around the globe, we are experiencing capacity constraints in several test areas…_www.cfainstitute.org](https://www.cfainstitute.org/en/programs/cfa/register "https://www.cfainstitute.org/en/programs/cfa/register")[](https://www.cfainstitute.org/en/programs/cfa/register)
+{% linkpreview "https://www.cfainstitute.org/en/programs/cfa/register" %}
 
 Through this link, if you have a good credit card with large payment capability, it is possible to register for the upcoming exams.
 
@@ -76,11 +75,9 @@ Exam questions are not hard and as deep as the exams that you get in a bachelors
 
 Recommended Youtube channels that can help you cover almost everything…
 
-[**Mark Meldrum**  
-_This channel is targeted at candidates for the CFA™ (Chartered Financial Analyst) Level 1 exam. All 10 topics required…_www.youtube.com](https://www.youtube.com/c/MarkMeldrumPhD "https://www.youtube.com/c/MarkMeldrumPhD")[](https://www.youtube.com/c/MarkMeldrumPhD)
+{% linkpreview "https://www.youtube.com/c/MarkMeldrumPhD" %}
 
-[**IFT**  
-_IFT is an Approved Prep Provider by the Chartered Financial Analyst (CFA) Institute, USA. If you intend to appear in…_www.youtube.com](https://www.youtube.com/channel/UCo294k7RvCnpIXrdiSl22LQ "https://www.youtube.com/channel/UCo294k7RvCnpIXrdiSl22LQ")[](https://www.youtube.com/channel/UCo294k7RvCnpIXrdiSl22LQ)
+{% linkpreview "https://www.youtube.com/channel/UCo294k7RvCnpIXrdiSl22LQ" %}
 
 In Sri Lanka there are several prep providers located in Colombo. I personally found their programs to be overvalued and expensive. Majority of people go for self studying and you must do self studying whether or not you get help from a prep provider. It totally depends on the person and the schedule.
 

@@ -1,3 +1,4 @@
 plugins:
   - jekyll-gist
   - jekyll-seo-tag
+  - jekyll-linkpreview

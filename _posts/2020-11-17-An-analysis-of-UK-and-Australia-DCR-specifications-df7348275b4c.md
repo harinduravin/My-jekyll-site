@@ -4,7 +4,8 @@ type: tech
 image: https://cdn-images-1.medium.com/max/800/1*3h0nvkUMRGYk9QEjJGpwsQ.jpeg
 comments: true
 title: An analysis of UK and Australia DCR specifications
-description: What is Dynamic Client Registration (DCR)?
+description: >-
+  In Open banking, Dynamic Client registration takes care about how an Accredited Data Recipient (ADR) can automatically register themselves with Data Holders(DH). Data Holder is a bank that holds large amounts of consumer data. An ADR is...
 date: '2020-11-17T14:57:14.729Z'
 categories: []
 keywords: []
@@ -23,8 +24,7 @@ To understand DCR better, it is better to dive into detailed specifications give
 
 In Australia, regulatory authorities have come up with a set of standards for implementing this Open banking ecosystem. Background story and a high level description can be found here.
 
-[**Why current retail banking industry should cease for a moment and change?**  
-_In Australia, Australian Competition & Consumer Commission (ACCC) is overlooking a new type of regulation for banks in…_medium.com](https://medium.com/@harindu.ravin/why-current-retail-banking-industry-should-cease-for-a-moment-and-change-929ab99fcf09 "https://medium.com/@harindu.ravin/why-current-retail-banking-industry-should-cease-for-a-moment-and-change-929ab99fcf09")[](https://medium.com/@harindu.ravin/why-current-retail-banking-industry-should-cease-for-a-moment-and-change-929ab99fcf09)
+{% linkpreview "http://harinduravin.github.io/2020/11/13/@harinduravin-why-current-retail-banking-industry-should-cease-for-a-moment-and-change-929ab99fcf09.html" %}
 
 Given below describes how the regulatory authorities expect the whole ecosystem to be connected through APIs. Information should flow between three parties.
 
@@ -70,8 +70,7 @@ Before DCR takes place, ADR must know the API endpoint to call. For example:
 
 To build the endpoint, ADR needs some information about the specific Data Holder. In the example the Data Holder is a large bank in Australia. Details of the bank can be found in the below link.
 
-[**Company overview**  
-_A brief overview of the Westpac Group including our history, businesses, vision and values and partners._www.westpac.com.au](https://www.westpac.com.au/about-westpac/westpac-group/company-overview/ "https://www.westpac.com.au/about-westpac/westpac-group/company-overview/")[](https://www.westpac.com.au/about-westpac/westpac-group/company-overview/)
+{% linkpreview "https://www.westpac.com.au/about-westpac/westpac-group/company-overview/" %}
 
 “/open-banking/0.1/register” part is already available. What the ADR needs to collect is “digital-api.westpac.com.au”. To do this, ADR calls a different API in the CDR Register (Figure 1): Discovery APIs.
 
@@ -159,14 +158,7 @@ Some of the claims are similar to AU specification. There are claims about the s
 
 ### References
 
-[**API Security for AU**  
-_Skip to end of metadata Go to start of metadata The information security profile is built upon the foundations of the…_docs.wso2.com](https://docs.wso2.com/display/OB150/API+Security+for+AU "https://docs.wso2.com/display/OB150/API+Security+for+AU")[](https://docs.wso2.com/display/OB150/API+Security+for+AU)
-
-[**CDR Register Design Reference**  
-_The Australian Government is introducing a Consumer Data Right (CDR) to give consumers more control over their data…_cdr-register.github.io](https://cdr-register.github.io/register/#registration-response "https://cdr-register.github.io/register/#registration-response")[](https://cdr-register.github.io/register/#registration-response)
-
-[**OpenID Connect Discovery**  
-_WSO2 Identity Server supports OpenID Connect Discovery to discover an end user's OpenID provider, and also to obtain…_docs.wso2.com](https://docs.wso2.com/display/IS570/OpenID+Connect+Discovery "https://docs.wso2.com/display/IS570/OpenID+Connect+Discovery")[](https://docs.wso2.com/display/IS570/OpenID+Connect+Discovery)
-
-[**Confluence**  
-_Edit description_openbanking.atlassian.net](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/36667724/OpenBanking+OpenID+Dynamic+Client+Registration+Specification+-+v1.0.0-rc2 "https://openbanking.atlassian.net/wiki/spaces/DZ/pages/36667724/OpenBanking+OpenID+Dynamic+Client+Registration+Specification+-+v1.0.0-rc2")[](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/36667724/OpenBanking+OpenID+Dynamic+Client+Registration+Specification+-+v1.0.0-rc2)
+1. [https://docs.wso2.com/display/OB150/API+Security+for+AU](https://docs.wso2.com/display/OB150/API+Security+for+AU)
+2. [https://cdr-register.github.io/register/#registration-response](https://cdr-register.github.io/register/#registration-response)
+3. [https://docs.wso2.com/display/IS570/OpenID+Connect+Discovery](https://docs.wso2.com/display/IS570/OpenID+Connect+Discovery)
+4. [https://openbanking.atlassian.net/wiki/spaces/DZ/pages/36667724/OpenBanking+OpenID+Dynamic+Client+Registration+Specification+-+v1.0.0-rc2](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/36667724/OpenBanking+OpenID+Dynamic+Client+Registration+Specification+-+v1.0.0-rc2)
