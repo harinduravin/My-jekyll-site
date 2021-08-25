@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Streaming OpenCV frames as a video using ROS</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Streaming OpenCV frames as a video using ROS" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This article will explain how to collect incoming openCV frames and send a video stream output through a local WiFi network. The stream can then be visualized on another device in the same local network." />
+<meta property="og:description" content="This article will explain how to collect incoming openCV frames and send a video stream output through a local WiFi network. The stream can then be visualized on another device in the same local network." />
+<meta property="og:image" content="/images/Sending_opencv_frames/stream_logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-18T06:53:26+05:30" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/images/Sending_opencv_frames/stream_logo.png" />
+<meta property="twitter:title" content="Streaming OpenCV frames as a video using ROS" />
+<script type="application/ld+json">
+{"headline":"Streaming OpenCV frames as a video using ROS","dateModified":"2021-08-18T06:53:26+05:30","datePublished":"2021-08-18T06:53:26+05:30","url":"/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html","mainEntityOfPage":{"@type":"WebPage","@id":"/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html"},"description":"This article will explain how to collect incoming openCV frames and send a video stream output through a local WiFi network. The stream can then be visualized on another device in the same local network.","image":"/images/Sending_opencv_frames/stream_logo.png","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/images/infinity.png">
+		<title>Infinity & Beyond! - Streaming OpenCV frames as a video using ROS</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<!-- Custom styles for this template -->
+		<link href="/assets/css/jquery.bxslider.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
+		<link href="/assets/css/linkpreview.css" rel="stylesheet">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src= 'https://www.googletagmanager.com/gtag/js?id=G-FJ5M3P0NKC' ></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-FJ5M3P0NKC');
+		</script>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/index.html">Home</a></li>
+						<li><a href="/finance.html">Finance</a></li>
+						<li><a href="/travel.html">Travel</a></li>
+						<li><a href="/tech.html">Tech</a></li>
+						<li><a href="/other.html">Other</a></li>
+						<li><a href="/about.html">About Me</a></li>
+						<li><a href="/contact.html">Contact</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://harinduravin.medium.com" target="_blank">Medium.com</a></li>
+					</ul>
+
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
+		<header>
+			<a href="index.html"><h1>Infinity & Beyond!</h1></a>
+		</header>
+
+        <section>
+            <div class="row">
+                <div class="col-md-8">
+<article class="blog-post">
+    <div class="blog-post-body">
+        <h2><a href=#>Streaming OpenCV frames as a video using ROS</a></h2>
+        <div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a></span>|<span><i class="fa fa-clock-o"></i>18 Aug 2021</span>|<span><a href="/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html#disqus_thread"></a></span></div>
+        <div class="blog-post-text">
+            <p style="text-align: center;">
+ <img src="/images/Sending_opencv_frames/stream_logo.png" alt="drawing" width="500" />
+</p>
+
+<p>Imagine you need to edit a video frame by frame using openCV. You need these frames stitched back together into a video. The video input is realtime and you might need the real time processed video streamed through a local network. A common use case would be CCTV surveillance. The camera video input needs to be attached with time stamps. And also automatic object detection bounding boxes in the surveillance camera need to be added before streaming to the internet.</p>
+
+<p>This article will explain how to collect incoming openCV frames and send a video stream output through a local WiFi network. The stream can then be visualized on another device in the same local network.</p>
+
+<p>In this article this is implemented in ROS (Robot Operating System). The implementation has been tested in both ROS Noetic and Melodic in Ubuntu 20.04 and 18.04 environments. The code is implemented in a ROS node. It is assumed that the ROS node is getting an incoming stream of image frames through a ROS topic. The image frames are received in the standard sensor_msgs <a href="http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/Image.html">Image</a> message format. In my example the ROS topic receives these frames at a rate of 30 FPS.</p>
+
+<p>The goal is to create a ROS node that process the received frames using OpenCV and then stream. The processing part can be any of the standard image processing functions available in the openCV library. For the streaming part we came across two methods.</p>
+
+<h3 id="using-a-python-flask-server">Using a python flask server</h3>
+
+<p>The easiest method in implementing the above discussed ROS node is to use a flask server. For this flask needs to be installed using basic installation steps available on the web. After installation the next step is creating a new python ROS node with the following code.</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/2a96ce86829280e0f6dcb5aa85e0b4fa.js"> </script>
+
+<p>After implementing the node the terminal should end up displaying something similar to this. It will point to a link that will display the video stream. This link can be accessed through the same computer as well as other devices that are connected to the WiFi local network. The particular link is dependent on the IP address of the computer. In my application the link was http://192.168.1.13:5000/.</p>
+
+<p style="text-align: center;">
+ <img src="/images/Sending_opencv_frames/flaskterminal.png" alt="drawing" width="700" />
+</p>
+
+<p>In the same folder the ROS node script is placed, two other folders called ‘static’ and ‘templates’ should be placed. In the ‘templates’ folder an html file can be placed. In static folder css, js files and images can be placed. The name of the html file should match with the name mentioned in the ROS node. A basic html file should include the following.</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/90a3e4675d84bb622eefae1b5bae7c1d.js"> </script>
+
+<p>Finally when the webpage is accessed through another device it viewed similar to this. The web page here is included with some css and js functionality.</p>
+
+<p style="text-align: center;">
+ <img src="/images/Sending_opencv_frames/browser.png" alt="drawing" width="700" />
+</p>
+
+<p>Since a browser is used, any type of device was able to stream the video through the network. Even though it was quick and easy to set up, the quality of the stream drastically reduced when the resolution was increased from 480p. The ROS node was using nearly 100% CPU.  There was no way to optimize the stream.</p>
+
+<h3 id="using-ffmpeg-library">Using FFmpeg library</h3>
+
+<p>“FFmpeg is a free and open-source software project consisting of a a large amount of libraries and programs for handling video, audio and other multimedia files and streams”. This is a direct reference to the FFmpeg website.</p>
+
+<div class="jekyll-linkpreview-wrapper">
+  <div class="jekyll-linkpreview-wrapper-inner">
+    <div class="jekyll-linkpreview-content">
+
+      <div class="jekyll-linkpreview-body">
+        <h2 class="jekyll-linkpreview-title">
+          <a href="https://www.ffmpeg.org" target="_blank">
+FFmpeg</a>
+        </h2>
+        <div class="jekyll-linkpreview-description">
+    We have a new IRC home at Libera Chat
+    now! Feel free to join us at #ffmpeg and #ffmpeg-devel. More info at contact#IRCChannels
+  ...</div>
+      </div>
+    </div>
+    <div class="jekyll-linkpreview-footer">
+      <a href="www.ffmpeg.org" target="_blank">www.ffmpeg.org</a>
+    </div>
+  </div>
+</div>
+
+<p>While trying to use this library for my purpose, there were many instances and guides to use the RTMP(Real-Time Messaging Protocol) protocol. I continuously got an error similar to “TCP connection refused”. The obvious reason was that RTMP uses TCP(Transport Control Protocol) transport protocol. TCP usually needs a listener at the other end to do a hand-shake before the transmission. Without a proper listener at the other end I was unable to overcome this error. Then I decided to use the RTP(Real-time Transport Protocol) protocol instead of the RTMP protocol. The RTP protocol could be implemented without a “TCP connection refused” error because it uses UDP(User Datum Protocol), which is lightweight and faster. Low accuracy in UDP did not cause much of a problem.</p>
+
+<p>Before implementing the ROS node FFmpeg needs to be installed first. Even though internet sources refer to something called “FFServer” this is not required to implement the video stream in our application. It seems FFServer was installed along with the FFmpeg library in the early times. And they seem to have removed the FFServer from FFmpeg. There is no issue downloading the newest FFmpeg library.</p>
+
+<p>This is the ROS node implementation done using FFmpeg library.</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/5eebe0816894cd269e2abbb686366d16.js"> </script>
+
+<p>rtmp_url = “rtp://192.168.1.3:1234/stream” This line provides the link for the video stream. The IP address here is the IP address of the device one expect the stream to be received. It is worth noting that the port number 1234 was the one that resulted in successful implementation. I needed VLC media player to receive the video stream. The server side will look like this once the stream is initiated.</p>
+
+<p style="text-align: center;">
+ <img src="/images/Sending_opencv_frames/ffmpegterminal.png" alt="drawing" width="700" />
+</p>
+
+<p>In order to open the stream in VLC player, create a file with the extension “SDP”. Include the text as shown here. Then try to open the file in VLC and play it.</p>
+
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/eb89bba96d9b968220f9a1c8e1bf5be9.js"> </script>
+
+<p>It should be noted that c=IN IP4 192.168.1.3 line should include the IP address of the receiver. This resulted in a better video stream than the earlier. Probably, there exists many ways to optimize this stream because FFmpeg facilitates optmization. This how the stream looked like on VLC player.</p>
+
+<p style="text-align: center;">
+ <img src="/images/Sending_opencv_frames/vlc.png" alt="drawing" width="700" />
+</p>
+
+<p>Good luck setting up!</p>
+
+        </div>
+    </div>
+</article>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    
+    var disqus_config = function () {
+    this.page.url = 'http://harinduravin.github.io/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://harindu-personal.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                </div>
+                <div class="col-md-4 sidebar-gutter">
+                    <aside>
+                    <!-- sidebar-widget -->
+                    
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">About Me</h3>
+                        <div class="widget-container widget-about">
+                            <a href="post.html"><img src="/images/author.jpg" alt=""></a>
+                            <h4>Harindu Jayarathne</h4>
+                            <div class="author-title">Hello There!</div>
+                            <p>I am an individual fascinated and driven by electronics, telecommunication, software, finance, accounting and economics. I love to scribble down literally anything I find interesting in these areas.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Featured Posts</h3>
+                        <div class="widget-container">
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html"><img src="/images/Sending_opencv_frames/stream_logo.png" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html">Streaming OpenCV frames as a video using ROS</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>18 Aug 2021</span>|  <span><a href="/2021/08/18/@harinduravin-sending-opencv-frames-as-a-video-stream-using-ros.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2021/06/09/@harinduravin-Mathemathinking-of-Intelligent-Reflective-Surfaces.md.html"><img src="/images/Intelligent_reflective_surfaces/IRS_main/IRS_main.001.jpeg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2021/06/09/@harinduravin-Mathemathinking-of-Intelligent-Reflective-Surfaces.md.html">Mathemathinking of Intelligent Reflective Surfaces</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>09 Jun 2021</span>|  <span><a href="/2021/06/09/@harinduravin-Mathemathinking-of-Intelligent-Reflective-Surfaces.md.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                                
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2021/04/18/@harinduravin-ten-subject-areas-of-cfa-part-two.html"><img src="/images/Ten_subjects_of_cfa_in_english/front.jpg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2021/04/18/@harinduravin-ten-subject-areas-of-cfa-part-two.html">Ten subject areas of CFA in English - II</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>18 Apr 2021</span>|  <span><a href="/2021/04/18/@harinduravin-ten-subject-areas-of-cfa-part-two.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2021/04/06/@harinduravin-ten-subject-areas-of-cfa-in-english.html"><img src="/images/Ten_subjects_of_cfa_in_english/front.jpg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2021/04/06/@harinduravin-ten-subject-areas-of-cfa-in-english.html">Ten subject areas of CFA in English</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>06 Apr 2021</span>|  <span><a href="/2021/04/06/@harinduravin-ten-subject-areas-of-cfa-in-english.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                                
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <article class="widget-post">
+                                <div class="post-image">
+                                    <a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html"><img src="https://cdn-images-1.medium.com/max/800/0*4hRbzd_aLxHymj3K.jpg" alt=""></a>
+                                </div>
+                                <div class="post-body">
+                                    <h2><a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html">Setting up legacy 1997 Joint Strike Fighter (JSF) game on Windows 10 system</a></h2>
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-clock-o"></i>30 Dec 2020</span>|  <span><a href="/2020/12/30/@harinduravin-setting-up-legacy-1997-joint-strike-fighter-jsf-game-on-windows-10-system-6a60f502d015.html#disqus_thread"></a></span>
+                                    </div>
+                                </div>
+                            </article>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Socials</h3>
+                        <div class="widget-container">
+                            <div class="widget-socials">
+                                <a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sidebar-widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <div class="widget-container">
+                            <ul>
+                                <li><a href="/finance.html">Finance</a></li>
+                                <li><a href="/travel.html">Travel</a></li>
+                                <li><a href="/tech.html">Tech</a></li>
+                                <li><a href="/other.html">Other</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+
+        </div><!-- /.container -->
+
+        <footer class="footer">
+
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100009370213115" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/harinduravin" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/harindu-jayarathne/" target="_blank"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+				<i class="fa fa-copyright"></i> 2021 Harindu Jayarathne.<br>
+				 Powered by Jekyll</a>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.bxslider.js"></script>
+        <script src="/js/mooz.scripts.min.js"></script>
+		
+		<script id= 'dsq-count-scr' src= 'https://harindu-personal.disqus.com/count.js' async></script>
+		
+    </body>
+</html>
+        

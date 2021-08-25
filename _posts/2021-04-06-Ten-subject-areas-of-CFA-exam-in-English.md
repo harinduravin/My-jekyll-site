@@ -37,7 +37,7 @@ Written tests measure the abilities of the candidates in level 2 and 3, while an
 
 Let's dive deep into first five subjects in this article.
 
-## Ethical and Professional Standards
+### Ethical and Professional Standards
 
 ![](/images/Ten_subjects_of_cfa_in_english/ethics.jpg)
 
@@ -49,7 +49,7 @@ There are Seven standards of professional conduct as well as a code of ethics th
 
 Other important part is GIPS(Global Investment Performance Standards). 50% of the time should be spent on practising questions in this area.
 
-## Quantitative Methods
+### Quantitative Methods
 
 Quantitative methods is a subject that tests the mathematical skills potentially required in the finance field. For me this area was the easiest to grasp because of my engineering background. Basic understanding of time value of money and high school mathematics is very important prerequisite for this subject. 
 
@@ -63,7 +63,7 @@ This subject takes a lot of reading time as well as some time to understand. Sin
 
 Practising a lot questions should be done in the process of learning and preparing for the exam.
 
-## Economics
+### Economics
 
 Economics section is a long section just like Quantitative methods section. I would say it is the most time consuming and longest subject area to study. This subject only involves basic economics concepts taught in high school and early bachelors level.
 
@@ -75,11 +75,11 @@ All the sub topics are understandable, if the studying is given enough time. The
 
 Most of the practice questions are confusing and some times not related to the concepts available in the curriculum. The best thing is to get familiar with many practice questions.
 
-## Financial Reporting and Analysis
+### Financial Reporting and Analysis
 
 Financial reporting and analysis subject is among the longest subjects in the curriculum. This subject starts from introducing different organizations that set financial reporting standards. Then the curriculum extends explaining the statement of profit and loss, balance sheet and the cash flow statement. Both GAAP(Generally Accepted Accounting Principles) and IFRS(International Financial Reporting Standards) methods are explained in each use case. 
 
-![](/images/Ten_subjects_of_cfa_in_english/fra.jpg)
+![](/images/Ten_subjects_of_cfa_in_english/FRA.jpg)
 
 The syllabus includes reporting standards for recognizing taxation, inventories, long term liabilities and long lived assets. And also financial analysis techniques and financial reporting quality are discussed. Du Pont Analysis is an interesting concept that is mentioned in the financial analysis techniques. That single concept can increase the understanding of previously learnt concepts in a remarkable way.
 
@@ -89,7 +89,7 @@ There is a huge amount of formulae to by heart in this section. Final day before
 
 If you have an accounting background from a previous qualification, this will probably be an easy subject to conquer.
 
-## Corporate Finance
+### Corporate Finance
 
 This is a relatively easy subject compared to first four subjects explained earlier. If you have studied an accounting related qualification or a first year bachelor in business studies, this subject will be comparatively easy. Additionally, it takes a small time to learn this subject due to few amount of chapters available. 
 
@@ -102,3 +102,5 @@ Some amount of effort is required to by heart some concepts. In few words, this 
 There are some formulae to remember in this subject. Having these formulae ready at the exam is important.
 
 In the second part of this article, the deep dive into rest of the subjects is continued. The second article includes the subjects that become CFA specific, because subjects already explained are usually available in any business related qualification. Subjects to come in the next article are related to investment, which is the core function taught in the CFA curriculum.
+
+{% linkpreview "https://harinduravin.github.io/2021/04/18/@harinduravin-ten-subject-areas-of-cfa-part-two.html" %}
