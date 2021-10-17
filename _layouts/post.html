@@ -4,7 +4,11 @@ layout: sidebar
 <article class="blog-post">
     <div class="blog-post-body">
         <h2><a href=#>{{ page.title }}</a></h2>
+        {% if page.twoauthors %}
+        <div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a> and <a href="#">Sehani Tharindra</a></span>|<span><i class="fa fa-clock-o"></i>{{ page.date | date_to_string }}</span>|<span><a href= '{{ page.url }}#disqus_thread'></a></span></div>
+        {% else %}
         <div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a></span>|<span><i class="fa fa-clock-o"></i>{{ page.date | date_to_string }}</span>|<span><a href="{{ page.url }}#disqus_thread"></a></span></div>
+        {% endif %}
         <div class="blog-post-text">
             {{ content }}
         </div>

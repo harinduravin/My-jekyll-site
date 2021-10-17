@@ -9,7 +9,11 @@ title: Home
 						</div>
 						<div class="blog-post-body">
 							<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+							{% if post.twoauthors %}
+							<div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a> and <a href="#">Sehani Tharindra</a></span>|<span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|<span><a href= '{{ post.url }}#disqus_thread'></a></span></div>
+							{% else %}
 							<div class="post-meta"><span>by <a href="#">Harindu Jayarathne</a></span>|<span><i class="fa fa-clock-o"></i>{{ post.date | date_to_string }}</span>|<span><a href= '{{ post.url }}#disqus_thread'></a></span></div>
+							{% endif %}
 							<p>{{ post.description }}</p>
 							<div class="read-more"><a href="{{ post.url }}">Continue Reading</a></div>
 						</div>
